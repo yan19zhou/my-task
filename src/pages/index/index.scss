@@ -1,0 +1,38 @@
+.index {
+    height: 100vh;
+    width: 100vw;
+    .wrap {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        border: solid 1px #000;
+        box-shadow: 0 0 20px 5px #222;
+        overflow: hidden;
+        position: relative;
+        animation: breathe 3s infinite;
+        .Avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+    }
+}
+
+@keyframes breathe {
+    0% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(.8);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    75% {
+        transform: scale(.8);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
