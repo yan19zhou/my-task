@@ -2,7 +2,7 @@
   <suspense>
     <view class="index position-r">
       <text>{{code}}</text>
-      <AtButton class="center-both">使用微信登录</AtButton>
+      <AtButton class="center-both" @tap="toHome">使用微信登录</AtButton>
       <view class="wrap">
         <view class="Avatar center-both">
           <open-data type="userAvatarUrl"></open-data>
@@ -21,7 +21,10 @@ export default {
   setup() {
     let code = ref(null);
     login(code);
-    return { code };
+    function toHome() {
+      Taro.switchTab({ url: "/pages/task/index" });
+    }
+    return { code, toHome };
   },
 };
 
