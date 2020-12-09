@@ -20,24 +20,35 @@ import "./index.scss";
 export default {
   setup() {
     let code = ref(null);
-    login(code);
-    function toHome() {
-      Taro.switchTab({ url: "/pages/task/index" });
-    }
+    // 点击事件
+    let toHome = goHome;
+    onMounted(() => {
+      // 异步函数请求数据
+      login(code);
+    });
     return { code, toHome };
   },
 };
 
-function login(code) {
-  Taro.login({
+async function login(code) {
+  /*   
+   登录接口
+   一个异步请求的范例
+   */
+  let data = await Taro.login({
     success: function (res) {
       if (res.code) {
         //发起网络请求
-        code.value = res.code;
+        return res.code;
       } else {
         console.log("登录失败！" + res.errMsg);
       }
     },
   });
+  code.value = data;
+}
+function goHome() {
+  // 路由跳转
+  Taro.switchTab({ url: "/pages/task/index" });
 }
 </script>
